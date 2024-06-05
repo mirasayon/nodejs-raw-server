@@ -1,17 +1,16 @@
 {
-	"name": "node-js",
+	"name": "raw-nodejs-server",
 	"version": "1.0.0",
-	"main": "index.js",
+	"main": "build/app/app.js",
 	"type": "module",
 	"scripts": {
-		"dev": "npx nodemon ./build/app/app.js",
-		"start": "node ./build/app/app.js",
+		"dev": "npx nodemon --env-file=.env ./build/app/app.js",
+		"start": "node --env-file=.env ./build/app/app.js",
 		"build": "npx tsc -p ./tsconfig.json",
-		"type": "npx tsc --watch",
-		"x": "npx tsc --watch"
+		"type": "npx tsc --watch"
 	},
 	"author": "",
-	"license": "ISC",
+	"license": "CC0-1.0",
 	"devDependencies": {
 		"@types/node": "^20.12.12",
 		"nodemon": "^3.1.3",
