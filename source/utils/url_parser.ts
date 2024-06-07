@@ -1,7 +1,7 @@
-import type { mod_request, server_reply, server_request } from "../types/main.js";
+import type { mod_request, server_reply } from "../types/types.js";
 
-export default function parseUrl(baseUrl: string) {
-	return (request: mod_request, reply: server_reply) => {
+export function url_parser(baseUrl: string) {
+	return function (request: mod_request, reply: server_reply) {
 		if (!request.url) {
 			return console.error("request.url is not defined");
 		}

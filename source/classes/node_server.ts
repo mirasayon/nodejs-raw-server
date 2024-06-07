@@ -1,15 +1,8 @@
 import http from "node:http";
-import EventEmitter from "node:events";
-import type {
-	mod_request,
-	server_reply,
-	server_request,
-	t_handler,
-	t_methods,
-} from "../types/main.js";
-import type { Router, f_function } from "./Router.js";
-
-export class Application {
+import { EventEmitter } from "node:events";
+import type { t_methods } from "../types/types.js";
+import type { Router } from "../classes/Router.js";
+export class Node_Server {
 	emitter: EventEmitter;
 	middlewares: ((request: any, response: any) => any)[];
 	server: http.Server<typeof http.IncomingMessage, typeof http.ServerResponse>;
@@ -18,24 +11,25 @@ export class Application {
 		this.server = this._createServer();
 		this.middlewares = [];
 	}
-
 	use(middleware: (...args: any[]) => void) {
 		this.middlewares.push(middleware);
 	}
-
 	listen(port: number, callback: () => any) {
-		this.server.listen(port, callback);
+		this.server.listen({ port: port }, callback);
 	}
-
 	addRouter(router: Router) {
 		Object.keys(router.endpoints).forEach((path) => {
 			const endpoint = router.endpoints[path];
+
 			const keys_method: string[] = Object.keys(endpoint);
+
 			keys_method.forEach((method) => {
 				const method_ = method as t_methods;
-				this.emitter.on(this._getRouteMask(path, method), (req, res) => {
+
+				this.emitter.on(this._getRouteMask(path, method), (req, reply) => {
 					const handler = endpoint[method_];
-					handler?.(req, res);
+
+					handler?.(req, reply);
 				});
 			});
 		});
@@ -66,7 +60,7 @@ export class Application {
 		});
 	}
 
-	private _getRouteMask(path: string, method: string): string {
+	private _getRouteMask(path: string, method: t_methods | string): string {
 		return `[${path}]:[${method}]`;
 	}
 }

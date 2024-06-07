@@ -1,4 +1,4 @@
-import type { mod_reply, mod_request, t_handler, t_methods } from "../types/main.js";
+import type { f_function, t_methods } from "../types/types.js";
 
 export class Router {
 	public endpoints: {
@@ -39,6 +39,4 @@ export class Router {
 		this.request("DELETE", path, handler);
 	}
 }
-
-export type f_function = (request: mod_request, reply: mod_reply) => Promise<void>;
 

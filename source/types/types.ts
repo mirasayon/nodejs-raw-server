@@ -21,3 +21,5 @@ export type mod_request = node_http.IncomingMessage & {
 	pathname: string;
 	body?: any;
 };
+
+export type f_function = (request: mod_request, reply: mod_reply) => Promise<void>;

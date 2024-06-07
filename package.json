@@ -4,10 +4,10 @@
 	"main": "build/app/app.js",
 	"type": "module",
 	"scripts": {
-		"dev": "npx nodemon --env-file=.env ./build/app/app.js",
-		"start": "node --env-file=.env ./build/app/app.js",
+		"dev": "npx nodemon --env-file=.env ./build/app/index.js",
+		"start": "node --env-file=.env ./build/app/index.js",
 		"build": "npx tsc -p ./tsconfig.json",
-		"type": "npx tsc --watch"
+		"type": "npx tsc -p ./tsconfig.json --watch"
 	},
 	"author": "",
 	"license": "CC0-1.0",
@@ -17,7 +17,8 @@
 		"typescript": "^5.4.5"
 	},
 	"dependencies": {
-		"mongoose": "^8.4.1"
+		"mongoose": "^8.4.1",
+		"ts-node": "^10.9.2"
 	}
 }
 
