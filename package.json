@@ -8,7 +8,7 @@
 		"dev": "npx nodemon --env-file=.env ./build/app/index.js",
 		"start": "node --env-file=.env ./build/app/index.js",
 		"build": "npx tsc -p ./tsconfig.json",
-		"xts": "npx tsc -p ./tsconfig.json --watch"
+		"typedev": "npx tsc -p ./tsconfig.json --watch"
 	},
 	"license": "CC0-1.0",
 	"author": {
@@ -24,4 +24,3 @@
 		"typescript": "^5.4.5"
 	}
 }
-
